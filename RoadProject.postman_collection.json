@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "41a96c9d-d8b9-4546-b8b6-dd373de1b19a",
+		"name": "RoadProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "District",
+			"item": [
+				{
+					"name": "Create new District",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"current_id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Mỹ Đình\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/districts",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"districts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Districts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/districts",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"districts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Road",
+			"item": [
+				{
+					"name": "Get Roads",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Road",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"road_id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Trần Duy Hưng\",\r\n    \"district\":{\r\n        \"id\":\"1\",\r\n        \"name\":\"Cầu giấy\"\r\n    },\r\n    \"sdate\":\"2022-05-02\",\r\n    \"description\":\"Khu phố văn minh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Road by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Trần Duy Hưng\",\r\n    \"district\":{\r\n        \"id\":\"1\",\r\n        \"name\":\"Cầu giấy\"\r\n    },\r\n    \"sdate\":\"2022-05-02\",\r\n    \"description\":\"Khu phố văn minh\",\r\n    \"status\":\"Đang tu sửa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads/{{road_id}}",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads",
+								"{{road_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Road by District name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads/listroad/Cầu giấy",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads",
+								"listroad",
+								"Cầu giấy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Road by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads/listroadname/Trần Duy Hưng",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads",
+								"listroadname",
+								"Trần Duy Hưng"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{domain}}/seed/generate/roads/{{road_id}}",
+							"protocol": "http",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"seed",
+								"generate",
+								"roads",
+								"{{road_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
